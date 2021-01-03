@@ -1,12 +1,14 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class Crossfire {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        int[] rowsAndCols = Arrays.stream(scanner.nextLine().split("\\s+"))
+        int[] rowsAndCols = Arrays.stream(reader.readLine().split("\\s+"))
                 .mapToInt(Integer::parseInt).toArray();
         int rows = rowsAndCols[0];
         int cols = rowsAndCols[1];
@@ -19,7 +21,7 @@ public class Crossfire {
                 startNumber++;
             }
         }
-        String input = scanner.nextLine();
+        String input = reader.readLine();
 
         while (!input.equals("Nuke it from orbit")) {
 
@@ -40,7 +42,7 @@ public class Crossfire {
                 }
             }
             matrix = clearEmptyCells(matrix);
-            input = scanner.nextLine();
+            input = reader.readLine();
         }
         printMatrix(matrix);
     }
