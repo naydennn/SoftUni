@@ -10,7 +10,7 @@ public class Product {
     }
 
     private void setName(String name) {
-        if (name.trim().isEmpty()) {
+        if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Name cannot be a empty string.");
         }
         this.name = name;

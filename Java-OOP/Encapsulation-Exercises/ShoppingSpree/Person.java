@@ -15,7 +15,7 @@ public class Person {
     }
 
     private void setName(String name) {
-        if (name.trim().isEmpty()) {
+        if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Name cannot be a empty.");
         }
         this.name = name;
@@ -29,34 +29,15 @@ public class Person {
     }
 
     public void buyProduct(Product product) {
-        if (getMoney() >= product.getCost()) {
-            setMoney(this.money - product.getCost());
-            this.products.add(product);
-            System.out.println(getName() + " bought " + product.getName());
-        } else {
-            System.out.println(getName() + " can't afford " + product.getName());
+        if (this.money < product.getCost()) {
+            throw new IllegalArgumentException(String.format("%s can't afford %s%n",
+                    this.name, product.getName()));
         }
+        products.add(product);
     }
 
     public String getName() {
         return name;
     }
 
-    public double getMoney() {
-        return money;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder result = new StringBuilder();
-        result.append(getName()).append(" - ");
-        if (this.products.isEmpty()) {
-            result.append("Nothing bought");
-            return result.toString();
-        }
-        for (Product product : products) {
-            result.append(product.getName()).append(", ");
-        }
-        return result.substring(0, result.lastIndexOf(","));
-    }
 }
