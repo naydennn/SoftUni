@@ -19,6 +19,10 @@ public class Rebel implements Person, Buyer {
         this.food += 5;
     }
 
+    public String getGroup() {
+        return group;
+    }
+
     @Override
     public int getFood() {
         return this.food;
