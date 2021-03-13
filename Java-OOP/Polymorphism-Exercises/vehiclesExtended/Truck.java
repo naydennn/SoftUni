@@ -1,4 +1,4 @@
-package vehicles;
+package vehiclesExtended;
 
 
 public class Truck extends Vehicle{

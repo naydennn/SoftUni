@@ -1,4 +1,4 @@
-package vehicles;
+package vehiclesExtended;
 
 import java.util.Scanner;
 
@@ -38,6 +38,7 @@ public class Main {
                         } else if (tokens[1].equals("Truck")) {
                             System.out.println(truck.driving(distance));
                         } else {
+                            Bus.IS_EMPTY = true;
                             System.out.println(bus.driving(distance));
                         }
                         break;
@@ -50,6 +51,11 @@ public class Main {
                         } else {
                             bus.refueling(liters);
                         }
+                        break;
+                    case "DriveEmpty":
+                        Bus.IS_EMPTY = false;
+                        distance = Double.parseDouble(tokens[2]);
+                        System.out.println(bus.driving(distance));
                         break;
                 }
             } catch (IllegalArgumentException e) {

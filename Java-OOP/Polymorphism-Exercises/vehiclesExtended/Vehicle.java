@@ -1,8 +1,8 @@
-package vehicles;
+package vehiclesExtended;
 
 import java.text.DecimalFormat;
 
-public abstract class Vehicle {
+public class Vehicle {
 
     private double fuelQuantity;
     private double fuelConsumption;
@@ -19,13 +19,10 @@ public abstract class Vehicle {
     }
 
     private void setFuelQuantity(double fuelQuantity) {
-        if (fuelQuantity <= 0) {
-            throw new IllegalArgumentException("Fuel must be a positive number");
-        }
-        this.fuelQuantity = fuelQuantity + this.fuelQuantity;
+        this.fuelQuantity = fuelQuantity;
     }
 
-    private void setFuelConsumption(double fuelConsumption) {
+    protected void setFuelConsumption(double fuelConsumption) {
         this.fuelConsumption = fuelConsumption;
     }
 
@@ -46,7 +43,7 @@ public abstract class Vehicle {
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
         if (result < 0) {
-            return "needs refueling";
+            return " needs refueling";
         } else {
             setFuelQuantity(result);
             return String.format(" travelled %s km", decimalFormat.format(distance));
@@ -54,11 +51,13 @@ public abstract class Vehicle {
     }
 
     public void refueling(double liters){
+        if (Validator.validNumber(liters)) {
             if (liters > this.getTankCapacity()) {
                 System.out.println("Cannot fit fuel in tank");
             } else {
-                setFuelQuantity(liters);
+                setFuelQuantity(liters + this.fuelQuantity);
             }
+        }
     }
 
     @Override

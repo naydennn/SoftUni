@@ -1,11 +1,18 @@
-package vehicles;
+package vehiclesExtended;
 
 public class Bus extends Vehicle{
 
-    public static final boolean IS_EMPTY = false;
+    public static boolean IS_EMPTY = true;
 
     protected Bus(double fuelQuantity, double fuelConsumption, double tankCapacity) {
         super(fuelQuantity, fuelConsumption, tankCapacity);
+    }
+
+    @Override
+    protected void setFuelConsumption(double fuelConsumption) {
+        if (IS_EMPTY) {
+            super.setFuelConsumption(fuelConsumption + 1.4);
+        }
     }
 
     @Override
