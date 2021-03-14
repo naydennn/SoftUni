@@ -16,11 +16,6 @@ public class Cat extends Felime {
     }
 
     @Override
-    void eat(Food food) {
-        this.setFoodEaten(food.getQuantity());
-    }
-
-    @Override
     public String toString() {
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         return String.format("%s[%s, %s, %s, %s, %d]",

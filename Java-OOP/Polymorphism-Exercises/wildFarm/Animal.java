@@ -1,5 +1,7 @@
 package wildFarm;
 
+import java.text.DecimalFormat;
+
 public abstract class Animal {
     private String animalName;
     private String animalType;
@@ -31,8 +33,9 @@ public abstract class Animal {
 
     @Override
     public String toString() {
-        return String.format("%s %.0f",
-                this.animalName, this.animalWeight);
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        return String.format("%s, %s",
+                this.animalName, decimalFormat.format(this.getAnimalWeight()));
     }
 
     abstract void makeSound();

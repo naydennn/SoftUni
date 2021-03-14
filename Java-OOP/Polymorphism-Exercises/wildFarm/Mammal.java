@@ -1,11 +1,18 @@
 package wildFarm;
 
-public abstract class Mammal extends Animal{
+import java.text.DecimalFormat;
+
+public abstract class Mammal extends Animal {
     private String livingRegion;
 
     protected Mammal(String animalType, String animalName, Double animalWeight, String livingRegion) {
         super(animalType, animalName, animalWeight);
         this.livingRegion = livingRegion;
+    }
+
+    @Override
+    public void eat(Food food) {
+        super.setFoodEaten(food.getQuantity());
     }
 
     public String getLivingRegion() {
@@ -14,6 +21,12 @@ public abstract class Mammal extends Animal{
 
     @Override
     public String toString() {
-        return String.format("%s %s", this.livingRegion, super.getFoodEaten());
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        return String.format("%s[%s, %s, %s, %d]",
+                this.getClass().getSimpleName(),
+                this.getAnimalName(),
+                decimalFormat.format(this.getAnimalWeight()),
+                this.getLivingRegion(),
+                this.getFoodEaten());
     }
 }
