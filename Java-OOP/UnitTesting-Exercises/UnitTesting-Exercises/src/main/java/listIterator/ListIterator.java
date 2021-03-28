@@ -27,10 +27,25 @@ public class ListIterator {
     }
 
     public boolean move() throws OperationNotSupportedException {
+
+        if (this.data.isEmpty() || this.index >= data.size()) {
+            throw new OperationNotSupportedException();
+        }
         this.index++;
-        if (this.data.isEmpty() || this.index > data.size() ) {
+        return true;
+    }
+
+    public boolean hasNext() throws OperationNotSupportedException {
+        if (this.index + 1 >= data.size()) {
             throw new OperationNotSupportedException();
         }
         return true;
+    }
+
+    public String print()  {
+        if (this.index >= data.size()) {
+            return "Invalid operation!";
+        }
+        return this.data.get(this.index);
     }
 }
