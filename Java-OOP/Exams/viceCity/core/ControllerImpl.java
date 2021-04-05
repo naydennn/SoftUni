@@ -2,12 +2,12 @@ package viceCity.core;
 
 import viceCity.core.interfaces.Controller;
 import viceCity.models.guns.*;
+import viceCity.models.neighbourhood.GangNeighbourhood;
+import viceCity.models.neighbourhood.Neighbourhood;
 import viceCity.models.players.*;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static viceCity.common.ConstantMessages.*;
 
@@ -16,11 +16,13 @@ public class ControllerImpl implements Controller {
     private Player mainPLayer;
     private Map<String, Player> civilPlayers;
     private Deque<Gun> guns;
+    private Neighbourhood neighbourhood;
 
     public ControllerImpl() {
         this.mainPLayer = new MainPlayer();
         this.civilPlayers = new LinkedHashMap<>();
         this.guns = new ArrayDeque<>();
+        this.neighbourhood = new GangNeighbourhood();
     }
 
     @Override
@@ -66,6 +68,31 @@ public class ControllerImpl implements Controller {
 
     @Override
     public String fight() {
-        return null;
+        neighbourhood.action(this.mainPLayer, civilPlayers.values());
+
+        if (mainPLayer.getLifePoints() == 100 && civilPlayers
+                .values().stream().allMatch(p -> p.getLifePoints() == 50)) {
+            return FIGHT_HOT_HAPPENED;
+        }
+
+        List<Player> deadPlayers = civilPlayers.values()
+                .stream()
+                .filter(p -> !p.isAlive())
+                .collect(Collectors.toList());
+
+        StringBuilder out = new StringBuilder(FIGHT_HAPPENED);
+
+        out.append(System.lineSeparator())
+                .append(String.format(MAIN_PLAYER_LIVE_POINTS_MESSAGE, mainPLayer.getLifePoints()))
+                .append(System.lineSeparator())
+                .append(String.format(MAIN_PLAYER_KILLED_CIVIL_PLAYERS_MESSAGE, deadPlayers.size()))
+                .append(System.lineSeparator())
+                .append(String.format(CIVIL_PLAYERS_LEFT_MESSAGE, civilPlayers.size() - deadPlayers.size()));
+
+        for (Player player : deadPlayers) {
+            civilPlayers.remove(player.getName());
+        }
+
+        return out.toString().trim();
     }
 }
