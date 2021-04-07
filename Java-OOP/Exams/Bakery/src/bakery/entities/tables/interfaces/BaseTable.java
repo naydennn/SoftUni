@@ -26,6 +26,7 @@ public abstract class BaseTable implements Table {
         this.pricePerPerson = pricePerPerson;
         this.foodOrders = new ArrayList<>();
         this.drinkOrders = new ArrayList<>();
+        this.isReserved = false;
     }
 
     private void setCapacity(int capacity) {
@@ -107,13 +108,11 @@ public abstract class BaseTable implements Table {
 
     @Override
     public String getFreeTableInfo() {
-        StringBuilder result = new StringBuilder();
 
-        result.append("Table: ").append(this.tableNumber).append(System.lineSeparator())
-                .append("Type: ").append(this.getClass().getSimpleName()).append(System.lineSeparator())
-                .append("Capacity: ").append(this.capacity).append(System.lineSeparator())
-                .append("Price per Person: ").append(this.pricePerPerson).append(System.lineSeparator());
-
-        return result.toString();
+        return "Table: " + this.tableNumber + System.lineSeparator() +
+                "Type: " + this.getClass().getSimpleName() + System.lineSeparator() +
+                "Capacity: " + this.capacity + System.lineSeparator() +
+                String.format("Price per person: %.2f%n", this.pricePerPerson);
     }
 }
+

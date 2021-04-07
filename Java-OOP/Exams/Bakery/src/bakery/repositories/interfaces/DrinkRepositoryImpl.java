@@ -2,22 +2,38 @@ package bakery.repositories.interfaces;
 
 import bakery.entities.drinks.interfaces.Drink;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
-public class DrinkRepositoryImpl extends RepositoryImpl implements DrinkRepository{
+public class DrinkRepositoryImpl implements DrinkRepository<Drink>{
+
+    private Collection<Drink> models;
+
+    public DrinkRepositoryImpl() {
+        this.models = new ArrayList<>();
+    }
+
 
     @Override
     public Drink getByNameAndBrand(String drinkName, String drinkBrand) {
-        Collection<Drink> drinks = super.getAll();
-
-        Drink drink = null;
-
-        for (Drink d : drinks) {
-            if (d.getBrand().equals(drinkBrand) && d.getName().equals(drinkName)) {
-                drink = d;
+        Drink result = null;
+        for (Drink drink : models) {
+            if (drink.getName().equals(drinkName) && drink.getBrand().equals(drinkBrand)) {
+                result = drink;
                 break;
             }
         }
-        return drink;
+        return result;
+    }
+
+    @Override
+    public Collection<Drink> getAll() {
+        return Collections.unmodifiableCollection(this.models);
+    }
+
+    @Override
+    public void add(Drink drink) {
+        this.models.add(drink);
     }
 }

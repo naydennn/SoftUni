@@ -3,11 +3,10 @@ package bakery.repositories.interfaces;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
-public abstract class RepositoryImpl<T> implements Repository<T> {
+public class RepositoryImpl<T> implements Repository<T> {
 
-    private List<T> models;
+    private Collection<T> models;
 
     public RepositoryImpl () {
         this.models = new ArrayList<>();
@@ -15,7 +14,7 @@ public abstract class RepositoryImpl<T> implements Repository<T> {
 
     @Override
     public Collection getAll() {
-        return Collections.unmodifiableList(models);
+        return Collections.unmodifiableCollection(models);
     }
 
     @Override
