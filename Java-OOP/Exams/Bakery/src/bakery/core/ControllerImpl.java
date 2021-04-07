@@ -1,7 +1,5 @@
 package bakery.core;
 
-import bakery.common.ExceptionMessages;
-import bakery.common.OutputMessages;
 import bakery.core.interfaces.Controller;
 import bakery.entities.bakedFoods.interfaces.BakedFood;
 import bakery.entities.bakedFoods.interfaces.Bread;
