@@ -27,7 +27,10 @@ VALUES
 ('Test2', 'Test'),
 ('Test3', 'Test');
 ALTER TABLE employees
-ADD COLUMN middle_name VARCHAR(45) NOT NULL;
+ADD COLUMN middle_name VARCHAR(50) NOT NULL;
+
+ALTER TABLE employees
+MODIFY middle_name VARCHAR(50) NOT NULL DEFAULT '';
 
 ALTER TABLE employees
 MODIFY middle_name VARCHAR(100);
