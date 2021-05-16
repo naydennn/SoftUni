@@ -136,9 +136,48 @@ VALUES
 (4, 'Georgi', 'Terziev', 'Ivanov', 'CEO', 2, '2007-12-09', 3000.00),
 (5, 'Peter', 'Pan', 'Pan', 'Intern', 3, '2016-08-28', 599.88);
 
-SELECT * FROM towns
+SELECT `name` FROM towns
 ORDER BY `name`;
-SELECT * FROM departments
+SELECT `name` FROM departments
 ORDER BY `name`;
-SELECT * FROM employees
+SELECT first_name, last_name, job_title, salary FROM employees
 ORDER BY `salary` DESC;
+
+SET SQL_SAFE_UPDATES = 0;
+
+UPDATE employees
+SET salary = salary + salary * 0.1;
+SELECT salary FROM employees;
+
+CREATE DATABASE car_rental;
+USE car_rental;
+CREATE TABLE category(
+id INT PRIMARY KEY AUTO_INCREMENT,
+category VARCHAR(45),
+daily_rate INT, 
+weekly_rate INT, 
+monthly_rate INT,
+weekend_rate INT
+);
+CREATE TABLE cars (
+id INT PRIMARY KEY AUTO_INCREMENT,
+plate_number INT NOT NULL,
+make VARCHAR(45) NOT NULL,
+model VARCHAR(45) NOT NULL,
+car_year YEAR,
+category_id INT,
+CONSTRAINT fk_cars_category
+FOREIGN KEY (category_id)
+REFERENCES category(id),
+doors INT NOT NULL,
+picture BLOB,
+car_conditions VARCHAR(45),
+available BOOLEAN
+);
+CREATE TABLE employees (
+id INT PRIMARY KEY AUTO_INCREMENT,
+first_name VARCHAR(45) NOT NULL,
+last_name VARCHAR(45) NOT NULL,
+title VARCHAR(45) NOT NULL,
+notes TEXT
+);
