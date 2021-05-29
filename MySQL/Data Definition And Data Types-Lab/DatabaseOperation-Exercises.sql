@@ -2,13 +2,13 @@ CREATE DATABASE minions;
 USE minions;
 
 CREATE TABLE minions (
-id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-`name` VARCHAR(45) NOT NULL,
-age INT NOT NULL
+id INT PRIMARY KEY AUTO_INCREMENT,
+`name` VARCHAR(50) NOT NULL,
+age INT
 );
 CREATE TABLE towns (
-towns_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-`name` VARCHAR(45) NOT NULL
+town_id INT PRIMARY KEY AUTO_INCREMENT,
+`name` VARCHAR(50) NOT NULL
 );
 
 ALTER TABLE minions
@@ -38,9 +38,9 @@ CREATE TABLE people (
 id INT PRIMARY KEY AUTO_INCREMENT,
 `name` VARCHAR(200) NOT NULL,
 picture BLOB,
-height DOUBLE (10,2),
-weight DOUBLE (10,2),
-gender CHAR(1),
+height DOUBLE (5 , 2),
+weight DOUBLE (5 , 2),
+gender CHAR(1) NOT NULL,
 birthdate DATE NOT NULL,
 biography TEXT
 );
@@ -181,3 +181,35 @@ last_name VARCHAR(45) NOT NULL,
 title VARCHAR(45) NOT NULL,
 notes TEXT
 );
+
+USE `gamebar`;
+CREATE TABLE `employees` (
+id INT PRIMARY KEY AUTO_INCREMENT,
+first_name VARCHAR(50) NOT NULL,
+last_name VARCHAR(50) NOT NULL
+);
+CREATE TABLE categories (
+id INT PRIMARY KEY AUTO_INCREMENT,
+`name` VARCHAR(50) NOT NULL
+);
+CREATE TABLE `products` (
+id INT PRIMARY KEY AUTO_INCREMENT,
+`name` VARCHAR(50) NOT NULL,
+category_id INT NOT NULL
+);
+
+ALTER TABLE `employees`
+ADD COLUMN `middle_name` VARCHAR(50) NOT NULL;
+
+ALTER TABLE `products`
+ADD CONSTRAINT fk_categories_products
+FOREIGN KEY (category_id)
+REFERENCES `categories`(id);
+use soft_uni;
+
+SELECT * FROM towns
+ORDER BY `name`;
+SELECT * FROM departments
+ORDER BY `name`;
+SELECT * FROM employees
+ORDER BY `salary` DESC;
