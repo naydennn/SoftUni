@@ -4106,3 +4106,19 @@ INSERT INTO `user_game_items` (`item_id`, `user_game_id`) VALUES
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+
+SELECT 
+    `name`, DATE_FORMAT(`start`, '%Y-%m-%d') AS `start`
+FROM
+    games
+WHERE
+    YEAR(`start`) IN (2011 , 2012)
+ORDER BY `start`
+LIMIT 50;
+
+SELECT 
+    user_name,
+    SUBSTR(email, LOCATE('@', email) + 1) AS 'email_provider'
+FROM
+    users
+ORDER BY email_provider , user_name;

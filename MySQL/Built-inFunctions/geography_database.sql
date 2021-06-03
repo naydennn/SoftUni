@@ -800,3 +800,13 @@ INSERT INTO `rivers` (`id`, `river_name`, `length`, `drainage_area`, `average_di
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+
+SELECT country_name, iso_code 
+FROM countries
+WHERE country_name LIKE '%A%A%A%'
+ORDER BY iso_code;
+
+SELECT peak_name, river_name, LOWER(CONCAT(peak_name, SUBSTR(river_name, 2))) AS mix
+FROM peaks , rivers
+WHERE RIGHT(peak_name, 1) = LEFT(river_name, 1)
+ORDER BY mix;
