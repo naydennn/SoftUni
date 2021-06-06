@@ -1664,10 +1664,71 @@ INSERT INTO `towns` (`town_id`, `name`) VALUES
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 
-SELECT department_id, MIN(salary) AS minimum_salary
-FROM employees
+SELECT 
+    department_id, MIN(salary) AS minimum_salary
+FROM
+    employees
 GROUP BY department_id
-HAVING department_id IN (2,5,7)
+HAVING department_id IN (2 , 5, 7)
 ORDER BY department_id;
 
-SELECT department_id
+CREATE TABLE `new_table` SELECT * FROM
+    employees
+WHERE
+    salary > 30000 AND manager_id != 42;
+
+UPDATE new_table 
+SET 
+    salary = salary + 5000
+WHERE
+    department_id = 1;
+
+SELECT 
+    department_id, AVG(salary)
+FROM
+    new_table
+GROUP BY department_id
+ORDER BY department_id;
+
+SELECT 
+    department_id, MAX(salary) AS max_salary
+FROM
+    employees
+GROUP BY department_id
+HAVING max_salary NOT BETWEEN 30000 AND 70000
+ORDER BY department_id;
+
+SELECT COUNT(salary) 
+FROM employees
+WHERE manager_id IS NULL;
+
+SELECT 
+    e.department_id,
+    (SELECT DISTINCT
+            e2.salary
+        FROM
+            employees AS e2
+        WHERE
+            e2.department_id = e.department_id
+        ORDER BY e2.salary DESC
+        LIMIT 1 OFFSET 2) AS third_max_salary
+FROM
+    employees AS e
+GROUP BY e.department_id
+HAVING third_max_salary IS NOT NULL
+ORDER BY e.department_id;
+
+SELECT department_id, SUM(salary) AS total_salary
+FROM employees
+GROUP BY department_id
+ORDER BY department_id;
+
+SELECT e1.first_name, e1.last_name, e1.department_id
+FROM employees AS e1
+WHERE e1.salary > (SELECT AVG(e2.salary) 
+FROM employees AS e2 
+WHERE e2.department_id = e1.department_id
+)
+ORDER BY department_id, employee_id
+LIMIT 10;
+
