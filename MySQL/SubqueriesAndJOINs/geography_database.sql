@@ -800,3 +800,79 @@ INSERT INTO `rivers` (`id`, `river_name`, `length`, `drainage_area`, `average_di
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+
+SELECT 
+    c.country_code, m.mountain_range, p.peak_name, p.elevation
+FROM
+    countries AS c
+        JOIN
+    mountains_countries AS mc ON c.country_code = mc.country_code
+        JOIN
+    mountains AS m ON mc.mountain_id = m.id
+        JOIN
+    peaks AS p ON m.id = p.mountain_id
+WHERE
+    c.country_code = 'BG'
+        AND p.elevation > 2835
+ORDER BY p.elevation DESC; 
+
+SELECT 
+    c.country_code, COUNT(m.mountain_range) AS mountain_range
+FROM
+    countries AS c
+        JOIN
+    mountains_countries AS mc ON c.country_code = mc.country_code
+        JOIN
+    mountains AS m ON mc.mountain_id = m.id
+GROUP BY c.country_code
+HAVING c.country_code IN ('BG' , 'RU', 'US')
+ORDER BY mountain_range DESC;
+
+SELECT 
+    c.country_name, r.river_name
+FROM
+    countries AS c
+        LEFT JOIN
+    countries_rivers AS ac ON c.country_code = ac.country_code
+        LEFT JOIN
+    rivers AS r ON ac.river_id = r.id
+WHERE
+    c.continent_code = 'AF'
+ORDER BY c.country_name
+LIMIT 5;
+
+SELECT 
+    COUNT(*)
+FROM
+    countries AS c
+        LEFT JOIN
+    mountains_countries AS cm ON c.country_code = cm.country_code
+WHERE
+    cm.mountain_id IS NULL;
+    
+SELECT 
+    c.country_name,
+    MAX(p.elevation) AS highest_peak_elevation,
+    MAX(r.length) AS longest_river_length
+FROM
+    countries AS c
+        LEFT JOIN
+    mountains_countries AS mc ON c.country_code = mc.country_code
+        LEFT JOIN
+    mountains AS m ON mc.mountain_id = m.id
+        LEFT JOIN
+    peaks AS p ON m.id = p.mountain_id
+        LEFT JOIN
+    countries_rivers AS ac ON c.country_code = ac.country_code
+        LEFT JOIN
+    rivers AS r ON ac.river_id = r.id
+    GROUP BY c.country_name
+    ORDER BY highest_peak_elevation DESC, longest_river_length DESC, c.country_name
+    LIMIT  5;
+
+-- 15
+
+SELECT c.continent_code, c.currency_code, (COUNT(*))
+FROM countries AS c
+GROUP BY c.continent_code, c.currency_code
+ORDER BY continent_code, currency_code;
