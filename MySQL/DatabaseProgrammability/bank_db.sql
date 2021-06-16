@@ -69,3 +69,71 @@ INSERT INTO `account_holders` (`id`, `first_name`, `last_name`, `ssn`) VALUES
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+
+-- ex8
+-- CREATE PROCEDURE `usp_get_holders_full_name` ()
+-- BEGIN
+-- SELECT CONCAT(first_name,' ', last_name) AS full_name FROM account_holders
+-- ORDER BY full_name;
+-- END
+
+-- ex.10
+-- CREATE FUNCTION `ufn_calculate_future_value`(`sum` DECIMAl(12,4), `yearly_interest_rate` DOUBLE, `number_of_years` INT)
+-- RETURNS DECIMAL(12,4)
+-- DETERMINISTIC
+-- BEGIN
+-- 	RETURN `sum` * (POW(1+`yearly_interest_rate`,`number_of_years`));
+-- END
+
+-- EX11
+-- CREATE FUNCTION ufn_calculate_future_value(sum DECIMAL(10, 4), interest_rate DECIMAL(10, 4), years INT)
+-- RETURNS DECIMAL(10, 4)
+-- DETERMINISTIC
+-- BEGIN
+-- 	RETURN sum * POW((1 + interest_rate), years);
+-- END;
+
+-- CREATE PROCEDURE usp_calculate_future_value_for_account(
+--     account_id INT, interest_rate DECIMAL(19, 4))
+-- BEGIN
+--     SELECT 
+--          a.id AS 'account_id', h.first_name, h.last_name, a.balance AS 'current_balance',
+--          ufn_calculate_future_value(a.balance, interest_rate, 5) AS 'balance_in_5_years'
+--     FROM
+--         `account_holders` AS h
+--             JOIN
+--         `accounts` AS a ON h.id=a.account_holder_id
+--     WHERE a.id = account_id;
+-- END
+
+--  ex12
+--  CREATE PROCEDURE `usp_deposit_money` (account_id INT, money_amount DECIMAL(19,4))
+-- BEGIN
+-- IF money_amount > 0 THEN START TRANSACTION;
+-- UPDATE accounts AS a
+-- SET a.balance = a.balance + money_amount
+-- WHERE a.id = account_id;
+
+-- IF (SELECT a.balance FROM accounts AS a
+-- WHERE a.id = account_id) < 0
+-- THEN ROLLBACK;
+
+-- ELSE COMMIT;
+-- END IF;
+-- END IF;
+-- END
+
+-- ex.13
+-- CREATE PROCEDURE `usp_withdraw_money` (account_id INT, money_amount DECIMAL(19,4))
+-- BEGIN
+-- IF money_amount > 0 THEN START TRANSACTION;
+-- UPDATE `accounts` AS a
+-- 		SET a.`balance` = a.`balance` - money_amount
+-- 		WHERE a.`id` = account_id;
+-- IF (SELECT a.balance FROM accounts AS a
+-- WHERE a.id = account_id) < 0
+-- THEN ROLLBACK;
+-- ELSE COMMIT;
+-- END IF;
+-- END IF;
+-- END

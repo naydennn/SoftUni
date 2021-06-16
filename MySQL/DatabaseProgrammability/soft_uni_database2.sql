@@ -1672,3 +1672,79 @@ INSERT INTO `towns` (`town_id`, `name`) VALUES
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+
+-- ex1
+-- CREATE PROCEDURE `usp_get_employees_salary_above_35000` ()
+-- BEGIN
+-- SELECT first_name, last_name FROM employees
+-- WHERE salary >35000
+-- ORDER BY first_name, last_name, employee_id;
+-- END;
+
+-- ex2
+-- CREATE PROCEDURE `usp_get_employees_salary_above` (`number` DECIMAL(19,4))
+-- BEGIN
+-- SELECT first_name, last_name FROM employees
+-- WHERE salary >= `number`
+-- ORDER BY first_name, last_name, employee_id;
+-- END 
+
+-- ex3
+-- CREATE PROCEDURE `usp_get_towns_starting_with`(prefix VARCHAR(45))
+-- BEGIN
+-- SELECT `name` FROM towns
+-- WHERE LOWER(`name`) LIKE CONCAT(LOWER(prefix), '%')
+-- ORDER BY `name`;
+-- END
+CALL usp_get_towns_starting_with ('B');
+
+-- ex4
+-- CREATE PROCEDURE `usp_get_employees_from_town` (town_name VARCHAR(45))
+-- BEGIN
+-- SELECT first_name, last_name FROM employees AS e
+-- JOIN addresses AS a
+-- USING (address_id)
+-- JOIN towns AS t
+-- USING (town_id)
+-- WHERE t.`name` = town_name
+-- ORDER BY first_name, last_name, employee_id;
+-- END
+
+-- ex5
+-- CREATE FUNCTION `ufn_get_salary_level`(`salary_param` DECIMAL(10,2))
+-- RETURNS VARCHAR(10)
+-- DETERMINISTIC
+-- BEGIN
+-- 	RETURN (CASE
+-- 		WHEN `salary_param` < 30000 THEN 'Low'
+-- 		WHEN `salary_param` BETWEEN 30000 AND 50000 THEN 'Average'
+-- 		ELSE 'High'
+--     END);
+-- END
+
+-- ex6
+-- CREATE FUNCTION `ufn_get_salary_level`(`salary_param` DECIMAL(10,2))
+-- RETURNS VARCHAR(10)
+-- DETERMINISTIC
+-- BEGIN
+-- 	RETURN (CASE
+-- 		WHEN `salary_param` < 30000 THEN 'Low'
+-- 		WHEN `salary_param` BETWEEN 30000 AND 50000 THEN 'Average'
+-- 		ELSE 'High'
+--     END);
+-- END;
+
+-- CREATE PROCEDURE `usp_get_employees_by_salary_level`(level_of_salary VARCHAR(45))
+-- BEGIN
+-- SELECT first_name, last_name
+-- FROM employees
+-- WHERE (SELECT ufn_get_salary_level(salary)) = level_of_salary 
+-- ORDER BY `first_name` DESC, `last_name` DESC;
+-- END
+
+-- EX7
+-- CREATE FUNCTION `ufn_is_word_comprised`(`set_of_letters` VARCHAR(50), `word` VARCHAR(50)) RETURNS bit(1)
+--     DETERMINISTIC
+-- BEGIN
+-- 	RETURN `word` REGEXP (concat('^[', set_of_letters, ']+$'));
+-- END
