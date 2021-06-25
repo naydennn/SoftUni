@@ -8,7 +8,7 @@ public class Main {
         System.out.println("Write user name to found:");
 
         String userName = sc.nextLine();
-        Connection cnc = DriverManager.getConnection("jdbc:mysql://localhost:3306/diablo",  "root", "787898");
+        Connection cnc = DriverManager.getConnection("jdbc:mysql://localhost:3306/diablo",  "...", "...");
 
         PreparedStatement preparedStatement = cnc.prepareStatement("SELECT u.user_name, u.first_name, u.last_name, COUNT(g.id) AS game_count FROM users AS u, users_games AS g WHERE u.user_name = ? AND u.id = g.user_id GROUP BY g.user_id");
         preparedStatement.setString(1, userName);

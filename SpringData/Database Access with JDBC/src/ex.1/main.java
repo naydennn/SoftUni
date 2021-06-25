@@ -9,7 +9,7 @@ public class main {
         double salary = Double.parseDouble(sc.nextLine());
 
         Connection connection = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306/soft_uni","root","787898");
+                .getConnection("jdbc:mysql://localhost:3306/soft_uni","...","...");
 
         PreparedStatement stm = connection.prepareStatement("SELECT first_name, last_name FROM employees WHERE salary > ?");
         stm.setDouble(1, salary);
