@@ -62,7 +62,7 @@ public class Project {
         this.endDate = endDate;
     }
 
-    @ManyToMany(mappedBy = "projects")
+    @ManyToMany(mappedBy = "projects", cascade = CascadeType.ALL)
     public Set<Employee> getEmployees() {
         return employees;
     }

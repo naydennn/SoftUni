@@ -41,7 +41,7 @@ public class Department {
         this.manager = manager;
     }
 
-    @OneToMany(mappedBy = "department")
+    @OneToMany(mappedBy = "department",cascade = CascadeType.ALL)
     public Set<Employee> getEmployees() {
         return employees;
     }

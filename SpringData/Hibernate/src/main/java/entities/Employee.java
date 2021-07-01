@@ -117,7 +117,7 @@ public class Employee {
         this.address = address;
     }
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "employees_projects",
             joinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "employee_id"),
             inverseJoinColumns = @JoinColumn(name = "project_id", referencedColumnName = "project_id"))
