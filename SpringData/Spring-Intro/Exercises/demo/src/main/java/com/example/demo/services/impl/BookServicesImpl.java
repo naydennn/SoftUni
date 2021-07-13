@@ -13,7 +13,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -65,12 +64,13 @@ public class BookServicesImpl implements BookServices {
     }
 
     @Override
-    public List<String> getAllBookByAuthor(String fName, String lName) {
-        return bookRepository.findBooksByAuthor_FirstNameAndAuthor_LastNameAndOrderByReleaseDateDesc(fName,lName)
+    public List<String> findAllBooksByAuthorFirstAndLastNameOrderByReleaseDateTitle(String firstName, String lastName) {
+       return bookRepository.findAllByAuthor_FirstNameAndAuthor_LastNameOrderByReleaseDateDescTitle(firstName,lastName)
                 .stream()
-                .map(book -> String.format("%s %d %d", book.getTitle(), book.getReleaseDate(),
+                .map(book -> String.format("%s %s %d", book.getTitle(),
+                        book.getReleaseDate(),
                         book.getCopies()))
-                .collect(Collectors.toList());
+               .collect(Collectors.toList());
     }
 
     private Book getBook(String row) {
@@ -87,9 +87,8 @@ public class BookServicesImpl implements BookServices {
         Author author = authorServices.getRandomAuthor();
         Set<Category> categories = categoryServices.getRandomCategories();
 
-        Book book = new Book(title, editionType, price, copies, localDate
+        return new Book(title, editionType, price, copies, localDate
                 , ageRestriction, author, categories);
-        return book;
     }
 
 

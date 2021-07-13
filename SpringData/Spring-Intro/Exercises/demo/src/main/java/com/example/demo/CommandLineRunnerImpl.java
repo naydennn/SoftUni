@@ -29,14 +29,17 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         seedDatabase();
         // printTitlesOfAllBookAfterYear(2000);
         // printFirstNameAndLastNameOfAuthor(1990);
-        // printFirstNameLastNameAndBookCountOfAuthor();
-        printAllBookFromGeorgePowell("George", "Powell");
+        //printFirstNameLastNameAndBookCountOfAuthor();
+        printAllBookFromAuthorNameOrderByReleaseDate("George", "Powell");
 
     }
 
-    private void printAllBookFromGeorgePowell(String fName, String lName) {
-        bookServices.getAllBookByAuthor(fName, lName);
+    private void printAllBookFromAuthorNameOrderByReleaseDate(String firstName, String lastName) {
+     bookServices.findAllBooksByAuthorFirstAndLastNameOrderByReleaseDateTitle(firstName, lastName)
+     .forEach(System.out::println);
     }
+
+
 
     private void printFirstNameLastNameAndBookCountOfAuthor() {
         authorServices.getAllAuthorsOrderByBookCount()
