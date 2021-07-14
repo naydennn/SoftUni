@@ -1,5 +1,6 @@
 package com.example.advquerying.services;
 
+import com.example.advquerying.entities.Shampoo;
 import com.example.advquerying.entities.Size;
 import com.example.advquerying.repositories.ShampooRepository;
 import org.springframework.stereotype.Service;
@@ -44,5 +45,20 @@ public class ShampooServicesImpl implements ShampooServices {
     @Override
     public int countAllByPriceIsLessThan(BigDecimal price) {
         return shampooRepository.countAllByPriceIsLessThan(price);
+    }
+
+    @Override
+    public List<String> getAllShampooWithGivenIngredient(List<String> ingredientNames) {
+        return shampooRepository.getAllShampooWithGivenIngredient(ingredientNames)
+                .stream().map(Shampoo::getBrand)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> getAllShampooByIngredientCount(Integer value) {
+        return shampooRepository.getAllShampooByIngredientCount(value)
+                .stream()
+                .map(Shampoo::getBrand)
+                .collect(Collectors.toList());
     }
 }

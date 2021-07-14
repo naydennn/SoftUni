@@ -4,6 +4,7 @@ import com.example.advquerying.entities.Ingredient;
 import com.example.advquerying.repositories.IngredientRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,5 +29,17 @@ public class IngredientServicesImpl implements IngredientServices {
     @Override
     public List<Ingredient> findAllByNameInOrderByPrice(Collection<String> name) {
         return ingredientRepository.findAllByNameInOrderByPrice(name);
+    }
+
+    @Override
+    @Transactional
+    public int deleteByName(String name) {
+        return ingredientRepository.deleteByName(name);
+    }
+
+    @Transactional
+    @Override
+    public int increasePriceBy10Percent() {
+        return ingredientRepository.increasePriceBy10Percent();
     }
 }

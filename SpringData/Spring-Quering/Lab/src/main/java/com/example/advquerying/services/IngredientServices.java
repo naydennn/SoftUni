@@ -11,4 +11,7 @@ public interface IngredientServices {
 
     List<Ingredient> findAllByNameInOrderByPrice(Collection<String> name);
 
+    int deleteByName(String name);
+
+    int increasePriceBy10Percent();
 }

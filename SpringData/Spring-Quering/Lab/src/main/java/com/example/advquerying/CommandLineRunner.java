@@ -34,7 +34,34 @@ public class CommandLineRunner implements org.springframework.boot.CommandLineRu
             case 4 -> ex4();
             case 5 -> ex5();
             case 6 -> ex6();
+            case 7 -> ex7();
+            case 8 -> ex8();
+            case 9 -> ex9();
+            case 10 -> ex10();
+            case 11 -> ex11();
         }
+    }
+
+    private void ex11() {
+
+    }
+
+    private void ex10() {
+        System.out.println("Updated rows: "+ ingredientServices.increasePriceBy10Percent());
+    }
+
+    private void ex9() {
+        System.out.println(ingredientServices.deleteByName("Herbs"));
+    }
+
+    private void ex8() {
+        shampooServices.getAllShampooByIngredientCount(2)
+                .forEach(System.out::println);
+    }
+
+    private void ex7() {
+        shampooServices.getAllShampooWithGivenIngredient(Arrays.asList("Berry", "Mineral-Collagen"))
+                .forEach(System.out::println);
     }
 
     private void ex6() {
