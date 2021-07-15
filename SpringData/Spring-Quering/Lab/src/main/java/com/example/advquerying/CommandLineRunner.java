@@ -43,7 +43,8 @@ public class CommandLineRunner implements org.springframework.boot.CommandLineRu
     }
 
     private void ex11() {
-
+        System.out.println("Updated rows: "+
+                ingredientServices.updateIngredientPriceByGivenNameAndPercent("Apple", new BigDecimal("0.50")));
     }
 
     private void ex10() {

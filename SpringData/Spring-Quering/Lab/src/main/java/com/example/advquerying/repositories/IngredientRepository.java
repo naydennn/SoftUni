@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 
@@ -23,5 +24,7 @@ public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
     @Modifying
     int increasePriceBy10Percent();
 
-    int updateIngredientPriceByGivenNameAndPercent(String name, )
+    @Query("update Ingredient i set i.price = i.price + i.price * :percent where i.name = :name")
+    @Modifying
+    int updateIngredientPriceByGivenNameAndPercent(String name, BigDecimal percent);
 }

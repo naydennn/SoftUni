@@ -5,6 +5,7 @@ import com.example.advquerying.repositories.IngredientRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,5 +42,11 @@ public class IngredientServicesImpl implements IngredientServices {
     @Override
     public int increasePriceBy10Percent() {
         return ingredientRepository.increasePriceBy10Percent();
+    }
+
+    @Override
+    @Transactional
+    public int updateIngredientPriceByGivenNameAndPercent(String name, BigDecimal percent) {
+        return ingredientRepository.updateIngredientPriceByGivenNameAndPercent(name, percent);
     }
 }
