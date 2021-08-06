@@ -87,6 +87,11 @@ public class DataTest {
         }
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void customTest() {
+        data.getAllByType("NoType");
+    }
+
     @Test
     public void copy() {
         Repository copy = this.data.copy();
