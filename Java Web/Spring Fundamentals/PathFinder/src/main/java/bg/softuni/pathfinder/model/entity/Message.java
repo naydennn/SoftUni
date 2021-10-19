@@ -1,5 +1,6 @@
 package bg.softuni.pathfinder.model.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -16,6 +17,7 @@ public class Message extends BaseEntity{
     public Message() {
     }
 
+    @Column(nullable = false)
     public LocalDateTime getDateTime() {
         return dateTime;
     }

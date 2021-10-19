@@ -1,5 +1,6 @@
 package bg.softuni.pathfinder.model.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -18,6 +19,7 @@ public class Comment extends BaseEntity {
     public Comment() {
     }
 
+    @Column(nullable = false)
     public Boolean getApproved() {
         return approved;
     }
@@ -26,6 +28,7 @@ public class Comment extends BaseEntity {
         this.approved = approved;
     }
 
+    @Column(nullable = false)
     public LocalDateTime getCreated() {
         return created;
     }
@@ -34,6 +37,7 @@ public class Comment extends BaseEntity {
         this.created = created;
     }
 
+    @Column(nullable = false)
     public String getTextContent() {
         return textContent;
     }

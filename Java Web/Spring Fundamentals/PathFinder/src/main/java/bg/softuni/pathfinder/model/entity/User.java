@@ -20,6 +20,7 @@ public class User extends BaseEntity{
     public User() {
     }
 
+    @Column(nullable = false)
     public String getFullName() {
         return fullName;
     }
@@ -36,6 +37,7 @@ public class User extends BaseEntity{
         this.age = age;
     }
 
+    @Column(nullable = false)
     public String getUsername() {
         return username;
     }
@@ -44,6 +46,7 @@ public class User extends BaseEntity{
         this.username = username;
     }
 
+    @Column(nullable = false)
     public String getPassword() {
         return password;
     }

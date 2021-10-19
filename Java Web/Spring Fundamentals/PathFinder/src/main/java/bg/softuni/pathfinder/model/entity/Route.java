@@ -46,6 +46,7 @@ public class Route extends BaseEntity{
         this.description = description;
     }
 
+    @Column(unique = true, nullable = false)
     public String getName() {
         return name;
     }
