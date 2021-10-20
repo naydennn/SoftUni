@@ -1,7 +1,6 @@
 package bg.softuni.mobilelele.model.entity;
 
 import javax.persistence.*;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -14,7 +13,7 @@ public class User extends BaseEntity {
     private String firstName;
     private String lastName;
     private Boolean isActive;
-    private Set<UserRole> role;
+    private Set<UserRole> roles;
     private String imageUrl;
     private LocalDate created;
     private LocalDate modified;
@@ -64,12 +63,12 @@ public class User extends BaseEntity {
     }
 
     @ManyToMany(fetch = FetchType.EAGER)
-    public Set<UserRole> getRole() {
-        return role;
+    public Set<UserRole> getRoles() {
+        return roles;
     }
 
-    public void setRole(Set<UserRole> role) {
-        this.role = role;
+    public void setRoles(Set<UserRole> role) {
+        this.roles = role;
     }
 
     public String getImageUrl() {

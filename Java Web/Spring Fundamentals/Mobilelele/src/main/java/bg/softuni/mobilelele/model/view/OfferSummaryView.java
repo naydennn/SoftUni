@@ -1,49 +1,36 @@
-package bg.softuni.mobilelele.model.entity;
+package bg.softuni.mobilelele.model.view;
 
+import bg.softuni.mobilelele.model.entity.Model;
+import bg.softuni.mobilelele.model.entity.User;
 import bg.softuni.mobilelele.model.enums.EngineTypeEnum;
 import bg.softuni.mobilelele.model.enums.TransmissionTypeEnum;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "offers")
-public class Offer extends BaseEntity {
+public class OfferSummaryView {
 
+    private Long id;
     private String description;
     private EngineTypeEnum engine;
     private String imageUrl;
-    private Integer mileage;
+    private Integer millage;
     private Double price;
     private TransmissionTypeEnum transmission;
-    private Integer year;
     private LocalDate created;
     private LocalDate modified;
-    private User seller;
-    private Model model;
+    private String model;
 
-    public Offer() {
+    public OfferSummaryView() {
     }
 
-
-    public Integer getYear() {
-        return year;
+    public Long getId() {
+        return id;
     }
 
-    public void setYear(Integer year) {
-        this.year = year;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    @ManyToOne
-    public Model getModel() {
-        return model;
-    }
-
-    public void setModel(Model model) {
-        this.model = model;
-    }
-
-    @Column(columnDefinition = "TEXT")
     public String getDescription() {
         return description;
     }
@@ -52,7 +39,6 @@ public class Offer extends BaseEntity {
         this.description = description;
     }
 
-    @Enumerated(EnumType.STRING)
     public EngineTypeEnum getEngine() {
         return engine;
     }
@@ -69,12 +55,12 @@ public class Offer extends BaseEntity {
         this.imageUrl = imageUrl;
     }
 
-    public Integer getMileage() {
-        return mileage;
+    public Integer getMillage() {
+        return millage;
     }
 
-    public void setMileage(Integer millage) {
-        this.mileage = millage;
+    public void setMillage(Integer millage) {
+        this.millage = millage;
     }
 
     public Double getPrice() {
@@ -85,7 +71,6 @@ public class Offer extends BaseEntity {
         this.price = price;
     }
 
-    @Enumerated(EnumType.STRING)
     public TransmissionTypeEnum getTransmission() {
         return transmission;
     }
@@ -110,13 +95,11 @@ public class Offer extends BaseEntity {
         this.modified = modified;
     }
 
-    @ManyToOne
-    public User getSeller() {
-        return seller;
+    public String getModel() {
+        return model;
     }
 
-    public void setSeller(User seller) {
-        this.seller = seller;
+    public void setModel(String model) {
+        this.model = model;
     }
-
 }
