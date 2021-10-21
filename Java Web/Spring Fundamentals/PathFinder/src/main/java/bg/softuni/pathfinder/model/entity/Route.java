@@ -13,7 +13,7 @@ public class Route extends BaseEntity{
     private String videoUrl;
     private String description;
     private String name;
-    private LevelNameEnum levelEnum;
+    private LevelNameEnum level;
     private User author;
     private Set<Category> categories;
 
@@ -56,12 +56,12 @@ public class Route extends BaseEntity{
     }
 
     @Enumerated(EnumType.STRING)
-    public LevelNameEnum getLevelEnum() {
-        return levelEnum;
+    public LevelNameEnum getLevel() {
+        return level;
     }
 
-    public void setLevelEnum(LevelNameEnum levelEnum) {
-        this.levelEnum = levelEnum;
+    public void setLevel(LevelNameEnum levelEnum) {
+        this.level = levelEnum;
     }
 
     @ManyToOne

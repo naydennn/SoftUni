@@ -63,7 +63,7 @@ public class User extends BaseEntity{
         this.email = email;
     }
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     public Set<Role> getRole() {
         return role;
     }
