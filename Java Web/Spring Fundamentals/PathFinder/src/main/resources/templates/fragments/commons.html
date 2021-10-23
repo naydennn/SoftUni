@@ -39,7 +39,7 @@
                     <a href="/">Add new route</a>
                 </li>
                 <li>
-                    <a href="/">Profile</a>
+                    <a th:href="@{users/profile/{id}(id = ${@currentUser.id})}">Profile</a>
                 </li>
                 <li>
                     <a href="/">Admin</a>

@@ -16,15 +16,35 @@ public class OfferSummaryView {
     private Integer millage;
     private Double price;
     private TransmissionTypeEnum transmission;
+    private Integer year;
     private LocalDate created;
     private LocalDate modified;
     private String model;
+    private String brand;
 
     public OfferSummaryView() {
     }
 
     public Long getId() {
         return id;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public OfferSummaryView setBrand(String brand) {
+        this.brand = brand;
+        return this;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public OfferSummaryView setYear(Integer year) {
+        this.year = year;
+        return this;
     }
 
     public void setId(Long id) {

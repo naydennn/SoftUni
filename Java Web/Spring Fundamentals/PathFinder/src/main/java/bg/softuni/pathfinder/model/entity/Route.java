@@ -15,6 +15,7 @@ public class Route extends BaseEntity{
     private String name;
     private LevelNameEnum level;
     private User author;
+    private Set<Picture> pictures;
     private Set<Category> categories;
 
     public Route() {
@@ -64,7 +65,7 @@ public class Route extends BaseEntity{
         this.level = levelEnum;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     public User getAuthor() {
         return author;
     }
@@ -81,4 +82,16 @@ public class Route extends BaseEntity{
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
     }
+
+    @OneToMany(mappedBy = "route", fetch = FetchType.EAGER)
+    public Set<Picture> getPictures() {
+        return pictures;
+    }
+
+    public Route setPictures(Set<Picture> pictures) {
+        this.pictures = pictures;
+        return this;
+    }
 }
+
+

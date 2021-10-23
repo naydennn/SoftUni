@@ -11,6 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -45,13 +46,12 @@ public class DBInit implements CommandLineRunner {
         if (brandRepository.count() == 0) {
             initializeBrand();
         }
+        if (modelRepository.count() == 0) {
+            initializeModels();
+        }
 
         if (offerRepository.count() == 0) {
             initializeOffers();
-        }
-
-        if (modelRepository.count() == 0) {
-            initializeModels();
         }
 
     }
@@ -104,6 +104,8 @@ public class DBInit implements CommandLineRunner {
                     .orElse(null)); // or currentUser.getUserName()
             offer1.setImageUrl(
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcXp1KBpDKgYs6VqndkBpX8twjPOZbHV86yg&usqp=CAU");
+            offer1.setCreated(LocalDate.now());
+            offer1.setModified(LocalDate.parse("2022-12-27"));
 
             Offer offer2 = new Offer();
             offer2.setModel(modelRepository.findById(1L).orElse(null));
@@ -117,6 +119,8 @@ public class DBInit implements CommandLineRunner {
                     .orElse(null)); // or currentUser.getUserName()
             offer2.setImageUrl(
                     "https://www.picclickimg.com/d/l400/pict/283362908243_/FORD-ESCORT-MK5-16L-DOHC-16v-ZETEC.jpg");
+            offer2.setCreated(LocalDate.now());
+            offer2.setModified(LocalDate.parse("2021-12-27"));
 
             offerRepository.saveAll(List.of(offer1, offer2));
         }
