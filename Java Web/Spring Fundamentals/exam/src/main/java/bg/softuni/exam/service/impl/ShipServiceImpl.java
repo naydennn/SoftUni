@@ -64,4 +64,17 @@ public class ShipServiceImpl implements ShipService {
                 .map(ship -> modelMapper.map(ship, ShipViewModel.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void attack(String attackerName, String defenderName) {
+        Ship attackerShip = shipRepository.findByName(attackerName).get();
+        Ship defenderShip = shipRepository.findByName(defenderName).get();
+
+        if (defenderShip.getHealth() - attackerShip.getPower() <= 0) {
+            shipRepository.delete(defenderShip);
+        } else {
+            defenderShip.setHealth(attackerShip.getPower() - defenderShip.getHealth());
+            shipRepository.save(defenderShip);
+        }
+    }
 }

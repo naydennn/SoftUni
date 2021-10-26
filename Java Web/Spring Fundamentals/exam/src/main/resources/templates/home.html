@@ -15,9 +15,9 @@
                             Select the attacker
                         </h3>
                         <div class="mb-1 text-white">You must select one of the logged-in users that owns a ship</div>
-                        <select class="form-select mt-5" aria-label="Default select example">
+                        <select th:name="attackerName" class="form-select mt-5" aria-label="Default select example">
                             <option selected>You must select one of the logged-in users that owns a ship</option>
-                            <option th:each="s : ${loggedUserShips}" th:value="${s.name}" th:text="${s.name}">One</option>
+                            <option th:each="s : ${loggedUserShips}" th:value="${s.name}" th:text="${s.name}" th:name="${s.name}">One</option>
 
                         </select>
                     </div>
@@ -35,9 +35,9 @@
                             Select the defender
                         </h3>
                         <div class="mb-1 text-white">You must select one of the ships that is owned by another user</div>
-                        <select class="form-select mt-5" aria-label="Default select example">
+                        <select th:name="defenderName" class="form-select mt-5" aria-label="Default select example">
                             <option selected>You must select one of the ships that is owned by another user</option>
-                            <option th:each="s : ${anotherUsersShips}" th:value="${s.name}" th:text="${s.name}">One</option>
+                            <option th:each="s : ${anotherUsersShips}" th:value="${s.name}" th:text="${s.name}" th:name="${s.name}">One</option>
                         </select>
                     </div>
                     <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb"

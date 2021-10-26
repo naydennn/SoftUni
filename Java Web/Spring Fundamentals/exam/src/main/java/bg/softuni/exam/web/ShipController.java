@@ -5,11 +5,9 @@ import bg.softuni.exam.model.service.ShipServiceModel;
 import bg.softuni.exam.service.ShipService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -27,7 +25,7 @@ public class ShipController {
     }
 
     @ModelAttribute
-    public ShipAddBindingModel shipAddBindingModel(){
+    public ShipAddBindingModel shipAddBindingModel() {
         return new ShipAddBindingModel();
     }
 
@@ -51,13 +49,16 @@ public class ShipController {
 
         shipService.addShip(modelMapper.map(shipAddBindingModel, ShipServiceModel.class));
 
-        return "redirect:/";
+        return "redirect:/home";
     }
 
     @PostMapping("/fire")
-    public String fire() {
+    public String fire(@RequestParam(value = "attackerName") String attackerName,
+                       @RequestParam(value = "defenderName") String defenderName,
+                       Model model) {
 
-        //need more time :(
+        shipService.attack(attackerName, defenderName);
+
         return "redirect:/home";
     }
 }

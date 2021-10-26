@@ -14,4 +14,6 @@ public interface ShipService {
     List<ShipViewModel> findAllShipById(Long id);
 
     List<ShipViewModel> findAllShipWithoutLoggedInUser(Long id);
+
+    void attack(String attackerName, String defenderName);
 }
