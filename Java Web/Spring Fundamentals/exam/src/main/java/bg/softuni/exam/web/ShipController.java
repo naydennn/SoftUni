@@ -54,8 +54,7 @@ public class ShipController {
 
     @PostMapping("/fire")
     public String fire(@RequestParam(value = "attackerName") String attackerName,
-                       @RequestParam(value = "defenderName") String defenderName,
-                       Model model) {
+                       @RequestParam(value = "defenderName") String defenderName) {
 
         shipService.attack(attackerName, defenderName);
 
