@@ -1,125 +1,109 @@
 package bg.softuni.mobilelele.model.view;
 
-import bg.softuni.mobilelele.model.entity.Model;
-import bg.softuni.mobilelele.model.entity.User;
-import bg.softuni.mobilelele.model.enums.EngineTypeEnum;
-import bg.softuni.mobilelele.model.enums.TransmissionTypeEnum;
-
-import java.time.LocalDate;
+import bg.softuni.mobilelele.model.entity.enums.EngineEnum;
+import bg.softuni.mobilelele.model.entity.enums.TransmissionEnum;
 
 public class OfferSummaryView {
 
-    private Long id;
-    private String description;
-    private EngineTypeEnum engine;
-    private String imageUrl;
-    private Integer millage;
-    private Double price;
-    private TransmissionTypeEnum transmission;
-    private Integer year;
-    private LocalDate created;
-    private LocalDate modified;
-    private String model;
-    private String brand;
+  private long id;
+  private String description;
+  private EngineEnum engine;
+  private String imageUrl;
+  private int mileage;
+  private int price;
+  private TransmissionEnum transmission;
+  private int year;
+  private String model;
+  private String brand;
 
-    public OfferSummaryView() {
-    }
+  public long getId() {
+    return id;
+  }
 
-    public Long getId() {
-        return id;
-    }
+  public OfferSummaryView setId(long id) {
+    this.id = id;
+    return this;
+  }
 
-    public String getBrand() {
-        return brand;
-    }
+  public String getBrand() {
+    return brand;
+  }
 
-    public OfferSummaryView setBrand(String brand) {
-        this.brand = brand;
-        return this;
-    }
+  public OfferSummaryView setBrand(String brand) {
+    this.brand = brand;
+    return this;
+  }
 
-    public Integer getYear() {
-        return year;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public OfferSummaryView setYear(Integer year) {
-        this.year = year;
-        return this;
-    }
+  public OfferSummaryView setDescription(String description) {
+    this.description = description;
+    return this;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public EngineEnum getEngine() {
+    return engine;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public OfferSummaryView setEngine(EngineEnum engine) {
+    this.engine = engine;
+    return this;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public String getImageUrl() {
+    return imageUrl;
+  }
 
-    public EngineTypeEnum getEngine() {
-        return engine;
-    }
+  public OfferSummaryView setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
+    return this;
+  }
 
-    public void setEngine(EngineTypeEnum engine) {
-        this.engine = engine;
-    }
+  public int getMileage() {
+    return mileage;
+  }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
+  public OfferSummaryView setMileage(int mileage) {
+    this.mileage = mileage;
+    return this;
+  }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
+  public int getPrice() {
+    return price;
+  }
 
-    public Integer getMillage() {
-        return millage;
-    }
+  public OfferSummaryView setPrice(int price) {
+    this.price = price;
+    return this;
+  }
 
-    public void setMillage(Integer millage) {
-        this.millage = millage;
-    }
+  public TransmissionEnum getTransmission() {
+    return transmission;
+  }
 
-    public Double getPrice() {
-        return price;
-    }
+  public OfferSummaryView setTransmission(
+      TransmissionEnum transmission) {
+    this.transmission = transmission;
+    return this;
+  }
 
-    public void setPrice(Double price) {
-        this.price = price;
-    }
+  public int getYear() {
+    return year;
+  }
 
-    public TransmissionTypeEnum getTransmission() {
-        return transmission;
-    }
+  public OfferSummaryView setYear(int year) {
+    this.year = year;
+    return this;
+  }
 
-    public void setTransmission(TransmissionTypeEnum transmission) {
-        this.transmission = transmission;
-    }
+  public String getModel() {
+    return model;
+  }
 
-    public LocalDate getCreated() {
-        return created;
-    }
-
-    public void setCreated(LocalDate created) {
-        this.created = created;
-    }
-
-    public LocalDate getModified() {
-        return modified;
-    }
-
-    public void setModified(LocalDate modified) {
-        this.modified = modified;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
+  public OfferSummaryView setModel(String model) {
+    this.model = model;
+    return this;
+  }
 }

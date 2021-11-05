@@ -1,10 +1,13 @@
 package bg.softuni.mobilelele.repository;
 
-import bg.softuni.mobilelele.model.entity.UserRole;
-import bg.softuni.mobilelele.model.enums.UserRoleEnum;
+import bg.softuni.mobilelele.model.entity.UserRoleEntity;
+import bg.softuni.mobilelele.model.entity.enums.UserRoleEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface UserRoleRepository extends JpaRepository<UserRole, Long> {
+@Repository
+public interface UserRoleRepository extends JpaRepository<UserRoleEntity, Long> {
 
-    UserRole findByRole(UserRoleEnum role);
+  UserRoleEntity findByRole(UserRoleEnum role);
+
 }

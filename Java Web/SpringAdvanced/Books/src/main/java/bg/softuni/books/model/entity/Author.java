@@ -25,7 +25,7 @@ public class Author extends BaseEntity {
         return this;
     }
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     public List<Book> getBooks() {
         return books;
     }

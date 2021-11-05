@@ -2,25 +2,24 @@ package bg.softuni.mobilelele.model.service;
 
 public class UserLoginServiceModel {
 
-    private String username;
-    private String rawPassword;
+  private String username;
+  private String rawPassword;
 
-    public UserLoginServiceModel() {
-    }
+  public String getUsername() {
+    return username;
+  }
 
-    public String getUsername() {
-        return username;
-    }
+  public UserLoginServiceModel setUsername(String username) {
+    this.username = username;
+    return this;
+  }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+  public String getRawPassword() {
+    return rawPassword;
+  }
 
-    public String getRawPassword() {
-        return rawPassword;
-    }
-
-    public void setRawPassword(String rawPassword) {
-        this.rawPassword = rawPassword;
-    }
+  public UserLoginServiceModel setRawPassword(String rawPassword) {
+    this.rawPassword = rawPassword;
+    return this;
+  }
 }

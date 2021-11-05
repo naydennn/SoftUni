@@ -7,4 +7,8 @@ import java.util.List;
 public interface BookService {
 
     List<BookDTO> getAllBooks();
+
+    void deleteBook(long id);
+
+    long create(BookDTO bookDTO);
 }
