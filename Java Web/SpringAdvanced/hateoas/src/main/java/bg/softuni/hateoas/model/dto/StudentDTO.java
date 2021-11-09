@@ -1,5 +1,9 @@
 package bg.softuni.hateoas.model.dto;
 
+import bg.softuni.hateoas.model.entity.OrderEntity;
+
+import java.util.List;
+
 public class StudentDTO {
 
     private Long id;

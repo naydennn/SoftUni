@@ -1,12 +1,13 @@
 package bg.softuni.hateoas.model.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table(name = "student")
+@Table(name = "students")
 public class StudentEntity extends BaseEntity {
 
     private String name;
@@ -34,7 +35,7 @@ public class StudentEntity extends BaseEntity {
         return this;
     }
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
     public List<OrderEntity> getOrders() {
         return orders;
     }
