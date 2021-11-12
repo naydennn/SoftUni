@@ -4,8 +4,10 @@ import bg.softuni.mobilelele.model.binding.OfferAddBindModel;
 import bg.softuni.mobilelele.model.entity.ModelEntity;
 import bg.softuni.mobilelele.model.entity.OfferEntity;
 import bg.softuni.mobilelele.model.entity.UserEntity;
+import bg.softuni.mobilelele.model.entity.UserRoleEntity;
 import bg.softuni.mobilelele.model.entity.enums.EngineEnum;
 import bg.softuni.mobilelele.model.entity.enums.TransmissionEnum;
+import bg.softuni.mobilelele.model.entity.enums.UserRoleEnum;
 import bg.softuni.mobilelele.model.service.OfferAddServiceModel;
 import bg.softuni.mobilelele.model.service.OfferUpdateServiceModel;
 import bg.softuni.mobilelele.model.view.OfferDetailsView;
@@ -17,6 +19,7 @@ import bg.softuni.mobilelele.service.OfferService;
 import bg.softuni.mobilelele.web.exception.ObjectNotFoundException;
 import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -123,6 +126,22 @@ public class OfferServiceImpl implements OfferService {
 
         OfferEntity savedOffer = offerRepository.save(newOffer);
         return modelMapper.map(savedOffer, OfferAddServiceModel.class);
+    }
+
+    @Override
+    public boolean isOwner(String username, Long id) {
+        Optional<OfferEntity> offerEntity = offerRepository.
+                findById(id);
+
+        Optional<UserEntity> userEntity = userRepository.findByUsername(username);
+
+        if (offerEntity.isEmpty() || userEntity.isEmpty()) {
+            return false;
+        } else {
+            return offerEntity.get().getSeller().getUsername().equalsIgnoreCase(username) ||
+                    userEntity.get().getRoles().stream().map(UserRoleEntity::getRole).
+                            anyMatch(r -> r.equals(UserRoleEnum.ADMIN));
+        }
     }
 
     private OfferSummaryView map(OfferEntity offerEntity) {

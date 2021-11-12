@@ -19,7 +19,7 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/")
+    @GetMapping()
     public ResponseEntity<List<BookDTO>> index() {
 
         List<BookDTO> allBooks = bookService.getAllBooks();

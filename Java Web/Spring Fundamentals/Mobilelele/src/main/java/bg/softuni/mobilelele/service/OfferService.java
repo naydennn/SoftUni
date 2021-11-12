@@ -19,4 +19,6 @@ public interface OfferService {
   void updateOffer(OfferUpdateServiceModel offerModel);
 
   OfferAddServiceModel addOffer(OfferAddBindModel offerAddBindModel, String ownerId);
+
+  boolean isOwner(String username, Long id);
 }
