@@ -33,6 +33,8 @@ public class OfferDetailsView {
 
     private Long id;
 
+    private boolean canDelete;
+
     public OfferDetailsView() {
     }
 
@@ -150,6 +152,15 @@ public class OfferDetailsView {
 
     public OfferDetailsView setId(Long id) {
         this.id = id;
+        return this;
+    }
+
+    public boolean isCanDelete() {
+        return canDelete;
+    }
+
+    public OfferDetailsView setCanDelete(boolean canDelete) {
+        this.canDelete = canDelete;
         return this;
     }
 }

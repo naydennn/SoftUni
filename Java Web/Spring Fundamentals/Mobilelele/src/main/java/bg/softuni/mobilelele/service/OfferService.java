@@ -12,7 +12,7 @@ public interface OfferService {
 
   List<OfferSummaryView> getAllOffers();
 
-  OfferDetailsView findById(Long id);
+  OfferDetailsView findById(String username,Long id);
 
   void deleteOffer(Long id);
 

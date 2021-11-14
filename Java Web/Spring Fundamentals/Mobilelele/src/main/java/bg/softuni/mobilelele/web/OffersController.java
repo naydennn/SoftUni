@@ -49,8 +49,8 @@ public class OffersController {
 
     @GetMapping("/offers/{id}/details")
     public String showOffer(
-            @PathVariable Long id, Model model) {
-        model.addAttribute("offer", this.offerService.findById(id));
+            @PathVariable Long id, Model model, Principal principal) {
+        model.addAttribute("offer", this.offerService.findById(principal.getName(), id));
         return "details";
     }
 
@@ -67,9 +67,10 @@ public class OffersController {
     // UPDATE
 
     @GetMapping("/offers/{id}/edit")
-    public String editOffer(@PathVariable Long id, Model model) {
+    public String editOffer(@PathVariable Long id, Model model,
+                            Principal principal) {
 
-        OfferDetailsView offerDetailsView = offerService.findById(id);
+        OfferDetailsView offerDetailsView = offerService.findById(principal.getName(), id);
         OfferUpdateBindingModel offerModel = modelMapper.map(
                 offerDetailsView,
                 OfferUpdateBindingModel.class

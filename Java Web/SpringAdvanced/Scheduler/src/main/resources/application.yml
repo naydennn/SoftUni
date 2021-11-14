@@ -1,0 +1,2 @@
+shedulers:
+  cron: "*/10 * * * * *"
