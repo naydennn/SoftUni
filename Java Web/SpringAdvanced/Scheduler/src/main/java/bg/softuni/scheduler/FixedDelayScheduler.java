@@ -7,14 +7,14 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
-
 @Component
-public class CronSchedulerDemo {
+public class FixedDelayScheduler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CronSchedulerDemo.class);
 
-    @Scheduled(cron = "*/10 * * * * *")
-    public void showTimeWithCron() {
-        LOGGER.info("Hello from cron scheduler " +  LocalDateTime.now());
+
+    @Scheduled(fixedRate = 5000, initialDelay = 20)
+    public void showTimeWithFixedDelayScheduler() {
+        LOGGER.info("Hello from fixed delay scheduler " + LocalDateTime.now());
     }
 }
