@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "slido-402f3": {
+      "hosting": {
+        "sliDo": [
+          "slido-402f3"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "slido-402f3"
+  }
+}

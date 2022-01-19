@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="toggleSidenav()">
+      <span>
+        <mat-icon>menu</mat-icon>
+      </span>
+    </button>
+    <div>
+      <a routerLink="/">Sli.do</a>
+    </div>
+    <ul type="none" fxFlex fxLayout fxLayoutGap="20px" fxLayoutAlign="flex-end">
+      <li><a routerLink="/login">Login</a></li>
+      <li><a routerLink="/signup">Sign up</a></li>
+      <li><a routerLink="/user/events">Events</a></li>
+      <li><button>Logout</button></li>
+    </ul>
+  </mat-toolbar>

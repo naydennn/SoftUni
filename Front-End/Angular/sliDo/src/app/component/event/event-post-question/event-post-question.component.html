@@ -1,0 +1,15 @@
+<form fxLayout="column" fxLayoutAlign="center center" [formGroup]="postQuestionForm">
+  <mat-form-field appearance="outline">
+      <mat-label>Question</mat-label>
+    <textarea formControlName="text" matInput placeholder="Please ask a question..." rows="5">
+        
+    </textarea>
+    <mat-icon matSuffix>question_answer</mat-icon>
+   
+    <mat-hint>Question must be between 6 and 70 symbols</mat-hint>
+    <mat-error *ngIf="postQuestionForm.get('text')?.hasError('required')">Question field is required</mat-error>
+    <mat-error *ngIf="postQuestionForm.get('text')?.hasError('minlength')">Min length is 6 symbols</mat-error>
+    <mat-error *ngIf="postQuestionForm.get('text')?.hasError('maxlength')">Max length is 70 symbols</mat-error>
+  </mat-form-field> 
+  <button [disabled]="postQuestionForm.invalid" mat-fab type="submit" color="primary">Ask</button>
+</form>

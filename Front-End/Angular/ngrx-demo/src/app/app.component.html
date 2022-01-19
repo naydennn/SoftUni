@@ -1,0 +1,22 @@
+{{ counter$ | async}}
+<button (click)="incrementCounter()">Increment</button>
+
+<br>
+
+<div>
+  <span>Value is: {{value$ | async}}</span>
+</div>
+<input #valueInput type="text">
+<button (click)="setValue(valueInput)">Set Value</button>
+
+<br>
+
+<button (click)="loadUsers()">Load users</button>
+
+<ul *ngIf="(users$ | async) as users">
+  <li *ngFor="let user of users">{{ user.email }}</li>
+</ul>
+
+<div *ngIf="(isLoadingUsers$ | async)">Loading...</div>
+
+<button (click)="resetState()">Reset app state</button>

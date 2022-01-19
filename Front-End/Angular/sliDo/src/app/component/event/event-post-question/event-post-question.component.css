@@ -1,0 +1,8 @@
+textarea {
+    resize: none !important;
+}
+
+mat-form-field {
+    width: 500px;
+    margin: 50px;
+}

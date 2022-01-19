@@ -1,0 +1,17 @@
+<section>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <h1>Every Question Matters.</h1>
+    <p>Welcome to Sli.do. Please enter an event code</p>
+  </div>
+
+  <form (ngSubmit)="displayLiveEvent()" [formGroup]="eventForm" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+    <mat-form-field>
+      <mat-icon matSuffix>event</mat-icon>
+      <input formControlName="code" matInput type="text" placeholder="Enter event code....">
+      <mat-hint>Please enter a valid event code</mat-hint>
+      <mat-error>Please enter an event code</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" [disabled]="eventForm.invalid" type="submit">Join</button>
+  </form>
+
+</section>
