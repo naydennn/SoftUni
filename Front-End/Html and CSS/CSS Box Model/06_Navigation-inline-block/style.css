@@ -1,9 +1,10 @@
-body {
+html {
     font-family: Helvetica, sans-serif;
 }
 header {
     border-bottom: 1px solid black;
     width: 100%;
+    display: inline-block;
 }
 
 h1 {
@@ -11,10 +12,13 @@ h1 {
     display: inline-block;
     margin: 20px;
 }
+nav {
+    display: inline-block;
+}
 
 li {
     list-style: none;
-    padding: 20px;
+    padding: 0px, 10px;
     display: inline-block;
 }
 
